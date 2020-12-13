@@ -2,50 +2,40 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
-struct Command{
-	struct Command* next;
-	char word[];
-};
+#define MAX_STRING_LENGTH 1024;
 
-void PrintCommand(struct Command* command){
-	struct Command* tmp = command;
-	while(tmp != NULL){
-		printf("%s", (*tmp).word);
-		tmp = (*tmp).next;
-	}
-}
-
-struct Command* SetCommand(int N){
-	struct Command* command;
-	struct Command* first;
-	struct Command* last;
-	for (int i = 0; i < N; ++i){
-		command = (struct Command*)malloc(sizeof(struct Command));
-		scanf("%s", (*command).word);
-		if (strncmp((*command).word, "\n", strlen((*command).word)) == 0) break;
-		if (i == 0){
-			first = command;
-			last = command;
-		}
-		if(i < N){
-			(*command).next = command;
-		}else{
-			(*last).next = NULL;
-		}
-		last = command;
-	}
-	return first;
-}
-
-int main()
-{
+int main(){
+	// вводим первоначальное приглашение к вводу
 	printf("%s", "aleksandrbalasov@MacBook-Pro-Aleksandr-2 $");
-	struct Command* cmd = SetCommand(5);
-	//PrintCommand(cmd);
-	struct Command* tmp = cmd;
-	printf("%s", (*tmp).word);
-	tmp = (*tmp).next;
-	printf("%s", (*tmp).word);
+	// начинаем бесконечный цикл, который можно будет прервать только exit
+	while(true){
+		char[MAX_STRING_LENGTH] command;
+		int count = 0;
+		while(true){
+			inp = getchar();
+			// если идет \\n, то игнорируем, если \n, то завершаем 
+			if (inp == '\\'){
+				tmp1 = getchar();
+				if(tmp1 == 'n'){
+					break;
+				}
+				tmp2 = getchar()
+				if (!((tmp1 == '\\') && (tmp2 == 'n'))){
+					command[count] = inp;
+					count++;
+					command[count] = tmp1;
+					count++;
+					command[count] = tmp2;
+					count++;
+				}
+			}else{
+				command[count] = inp;
+				count++;
+			}
+		}
+		
+	}
 	return 0;
 }

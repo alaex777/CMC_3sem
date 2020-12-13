@@ -1,0 +1,25 @@
+echo a | cat| cat > /dev/null& echo b & cat < arguments.c | cat
+
+command 0:
+  inputFile: STDIN (стандартный поток ввода)
+  outputFile: /dev/null (перенаправление вывода)
+  background: True (выполнение в фоновом режиме)
+  pipe:
+    echo a
+    cat
+    cat
+
+command 1:
+  inputFile: STDIN (стандартный поток ввода)
+  outputFile: STDOUT (стандартный поток вывода)
+  background: True (выполнение в фоновом режиме)
+  pipe:
+    echo b
+
+command 2:
+  inputFile: arguments.c (перенаправление ввода)
+  outputFile: STDOUT (стандартный поток вывода)
+  background: False (выполнение в обычном режиме)
+  pipe:
+    cat
+    cat
